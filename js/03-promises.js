@@ -42,7 +42,6 @@ buttonElement.addEventListener('click', (e) =>
     {
         if (first_delay > 0 && delay_step > 0 && amount_ > 0)
         {
-            body.setAttribute("onload", Notiflix.Notify.warning('Start promise!'));
             console.log("\nStart promise!");
             let i = 0;
         
@@ -51,12 +50,10 @@ buttonElement.addEventListener('click', (e) =>
                 createPromise(amount_, delay_step)
                     .then(({ position, delay }) =>
                     {
-                        body.setAttribute("onload", Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay} ms;`));
                         console.log(`\nFulfilled promise ${position} in ${delay} ms;`);
                     })
                     .catch(({ position, delay }) =>
                     {
-                        body.setAttribute("onload", Notiflix.Notify.failure(`Rejected promise ${position} in ${delay} ms;`));
                         console.log(`\nRejected promise ${position} in ${delay} ms;`);
                     });
                 i += 1;
@@ -65,13 +62,11 @@ buttonElement.addEventListener('click', (e) =>
         }
         else
         {
-            body.setAttribute("onload", Notiflix.Notify.failure('Error! Please fill in all the fields!'));
             console.log("\nОшибка! Введите правильные значения!");
         }
     }
     else
     {
-        body.setAttribute("onload", Notiflix.Notify.failure('Error! Please fill in all the fields!'));
         console.log("\nОшибка! Введите правильные значения!");
     }
     formElement.reset();

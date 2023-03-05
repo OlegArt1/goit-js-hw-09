@@ -1,8 +1,3 @@
-// Timer
-
-//import { Flatpickr } from "../node_modules/flatpickr/dist/flatpickr.min.js";
-
-//import "../node_modules/flatpickr/dist/flatpickr.min.css";
 
 const body = document.querySelector("body");
 const dataTimePicker = document.querySelector("#datatime-picker");
@@ -29,7 +24,6 @@ let timer = null;
 
 dataStart.addEventListener('click', () =>
 {
-    //body.setAttribute("onload", Notiflix.Notify.success('Старт таймер!'));
     console.log("\nСтарт таймер!");
 
     timer = setInterval(()=>
@@ -57,14 +51,12 @@ dataStart.addEventListener('click', () =>
             }
             else
             {
-                //body.setAttribute("onload", Notiflix.Notify.failure('Ошибка! Выберите дату в календаре на следующие дни!'));
                 console.log("\nОшибка! Выберите дату в календаре на следующие дни!");
                 clearInterval(timer);
             }
         }
         else
         {
-            //body.setAttribute("onload", Notiflix.Notify.failure('Ошибка! Выберите дату в календаре!'));
             console.log("\nОшибка! Выберите дату в календаре!");
             clearInterval(timer);
         }
@@ -75,16 +67,8 @@ dataStop.addEventListener('click', () =>
     dataStart.removeAttribute('disabled');
     dataStop.setAttribute('disabled', false);
     clearInterval(timer);
-    body.setAttribute("onload", Notiflix.Notify.warning('Стоп таймер!'));
     console.log("\nСтоп таймер!");
 });
-/*
-const optionData =
-{
-    enableTime: true,
-    dateFormat: "Y-m-d H:i",
-}
-*/
 const options =
 {
     enableTime: true,
