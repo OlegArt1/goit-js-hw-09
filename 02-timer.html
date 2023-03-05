@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="css/common.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"/>
+        <link rel="stylesheet" href="./node_modules/notiflix-Notiflix-6936fff/src/notiflix.css"/>
+        <script src="./node_modules/notiflix-Notiflix-6936fff/dist/notiflix-notify-aio-3.2.6.min.js"></script>
+        <script src="./node_modules/notiflix-Notiflix-6936fff/dist/notiflix-report-aio-3.2.6.min.js"></script>
+        <script src="./node_modules/notiflix-Notiflix-6936fff/dist/notiflix-confirm-aio-3.2.6.min.js"></script>
+        <script src="./node_modules/notiflix-Notiflix-6936fff/dist/notiflix-loading-aio-3.2.6.min.js"></script>
+        <script src="./node_modules/notiflix-Notiflix-6936fff/dist/notiflix-block-aio-3.2.6.min.js"></script>    
+        <script src="./node_modules/notiflix-Notiflix-6936fff/src/notiflix.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <title>Countdown timer</title>
+    </head>
+    <body>
+        <p>
+            <a href="index.html">Go back</a>
+        </p>
+        <input id="datatime-picker" type="text"/>
+        <button type="button" data-start>Start</button>
+        <button type="button" data-stop>Stop</button>
+        <div class="timer">
+            <div class="field">
+                <span class="value" data-days>00</span>
+                <span class="label">Days;&nbsp;&nbsp;</span>
+            </div>
+            <div class="field">
+                <span class="value" data-hours>00</span>
+                <span class="label">Hours;&nbsp;&nbsp;</span>
+            </div>
+            <div class="field">
+                <span class="value" data-minutes>00</span>
+                <span class="label">Minutes;&nbsp;&nbsp;</span>
+            </div>
+            <div class="field">
+                <span class="value" data-seconds>00</span>
+                <span class="label">Seconds;&nbsp;&nbsp;</span>
+            </div>
+        </div>
+        <script src="./js/02-timer.js" type="module"></script>
+    </body>
+</html>
