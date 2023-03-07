@@ -1,28 +1,39 @@
 // Promises
 
 const body = document.querySelector("body");
+
 const labelElement = document.querySelector("label");
+
 const formElement = document.querySelector("form.form");
 
 const labelFirstElement = formElement.firstElementChild;
+
 const labelMiddleElement = formElement.firstElementChild.nextElementSibling;
+
 const labelLastElement = formElement.lastElementChild.previousElementSibling;
 
 const inputFirstElement = formElement.firstElementChild.firstElementChild;
+
 const inputMiddleElement = formElement.firstElementChild.nextElementSibling.firstElementChild;
+
 const inputLastElement = formElement.lastElementChild.previousElementSibling.firstElementChild;
 
 const buttonElement = formElement.lastElementChild;
 
-formElement.style.marginTop = '20px';
-formElement.style.marginLeft = '20px';
+formElement.style.marginTop = '40px';
+
+formElement.style.marginLeft = '40px';
 
 labelFirstElement.style.marginLeft = '8px';
+
 labelMiddleElement.style.marginLeft = '8px';
+
 labelLastElement.style.marginLeft = '8px';
 
 buttonElement.style.marginLeft = '10px';
+
 buttonElement.style.width = '150px';
+
 buttonElement.style.height = '30px';
 
 function createPromise (position, delay)
@@ -75,14 +86,20 @@ buttonElement.addEventListener('click', (e) =>
                             body.setAttribute("onload", Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay} ms;`));
 
                             console.log(`\nFulfilled promise ${position} in ${delay} ms;`);
-                            console.log("\nDelay first = " + first_delay + " ms; " + "Delay step = " + delay_step + " ms; " + "Amount = " + amount + "; ");
+                            
+                            console.log("\nDelay first = " + first_delay + " ms; " +
+                            
+                                        "Delay step = " + delay_step + " ms; " + "Amount = " + amount + "; ");
                         })
                         .catch(({ position, delay }) =>
                         {
                             body.setAttribute("onload", Notiflix.Notify.failure(`Rejected promise ${position} in ${delay} ms;`));
 
                             console.log(`\nRejected promise ${position} in ${delay} ms;`);
-                            console.log("\nDelay first = " + first_delay + " ms; " + "Delay step = " + delay_step + " ms; " + "Amount = " + amount + "; ");
+                            
+                            console.log("\nDelay first = " + first_delay + " ms; " +
+                            
+                                        "Delay step = " + delay_step + " ms; " + "Amount = " + amount + "; ");
                         });
                 },
                 delay_step);

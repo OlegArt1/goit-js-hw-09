@@ -1,19 +1,40 @@
+// Color-Switcher
 
 const body = document.querySelector("body");
-const startButton = document.querySelector("button[data-start]");
-const stopButton = document.querySelector("button[data-stop]");
 
-startButton.style.marginTop = '20px';
-startButton.style.marginLeft = '20px';
+const buttonStart = document.querySelector("button[data-start]");
+
+const buttonStop = document.querySelector("button[data-stop]");
+
+const widthContainer = (window.innerWidth - (150 * 2) - 20) / 2;
+
+const heightContainer = (window.innerHeight - 40) / 2;
+
+buttonStart.style.width = '150px';
+
+buttonStart.style.height = '40px';
+
+buttonStart.style.marginTop = (heightContainer - 50) + 'px';
+
+buttonStart.style.marginButton = heightContainer + 'px';
+
+buttonStart.style.marginLeft = widthContainer + 'px';
+
+buttonStart.style.marginRight = '20px';
+
+buttonStop.style.width = '150px';
+
+buttonStop.style.height = '40px';
 
 let timer = null;
 
-stopButton.setAttribute('disabled', false);
+buttonStop.setAttribute('disabled', false);
 
-startButton.addEventListener('click', () =>
+buttonStart.addEventListener('click', () =>
 {
-    startButton.setAttribute('disabled', false);
-    stopButton.removeAttribute('disabled');
+    buttonStart.setAttribute('disabled', false);
+    
+    buttonStop.removeAttribute('disabled');
     
     timer = setInterval(() =>
     {
@@ -23,15 +44,16 @@ startButton.addEventListener('click', () =>
 
     console.log("\nСтарт генератор фона!");
 });
-stopButton.addEventListener('click', () =>
+buttonStop.addEventListener('click', () =>
 {
     const fon_element = body.style.backgroundColor;
     
-    startButton.removeAttribute('disabled');
-    stopButton.setAttribute('disabled', false);
+    buttonStart.removeAttribute('disabled');
+    
+    buttonStop.setAttribute('disabled', false);
     
     clearInterval(timer);
-    
+
     console.log("\nСтоп генератор фона!\n\nФон сайта - ", fon_element + ";");
 });
 function getRandomHexColor()
