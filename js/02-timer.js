@@ -1,3 +1,4 @@
+// Timer
 
 const body = document.querySelector("body");
 const dataTimePicker = document.querySelector("#datatime-picker");
@@ -12,7 +13,8 @@ const fieldElement = document.querySelector(".field");
 const labelElement = document.querySelector(".label");
 
 dataStop.setAttribute('disabled', false);
-dataTimePicker.setAttribute('type', 'date');
+dataTimePicker.setAttribute('type', 'datetime-local');
+
 dataTimePicker.style.marginTop = '20px';
 dataTimePicker.style.marginLeft = '20px';
 timerElement.style.display = 'flex';
@@ -20,10 +22,13 @@ timerElement.style.alignItems = 'center';
 timerElement.style.justifyContent = 'left';
 timerElement.style.paddingTop = '30px';
 timerElement.style.marginLeft = '20px';
+
 let timer = null;
 
 dataStart.addEventListener('click', () =>
 {
+    body.setAttribute("onload", Notiflix.Notify.success('Старт таймер!'));
+
     console.log("\nСтарт таймер!");
 
     timer = setInterval(()=>
@@ -42,6 +47,7 @@ dataStart.addEventListener('click', () =>
             {
                 dataStart.setAttribute('disabled', false);
                 dataStop.removeAttribute('disabled');
+                
                 dataDays.textContent = days_text;
                 dataHours.textContent = hours_text;
                 dataMinutes.textContent = minutes_text;
@@ -51,13 +57,19 @@ dataStart.addEventListener('click', () =>
             }
             else
             {
+                body.setAttribute("onload", Notiflix.Notify.failure('Ошибка! Выберите дату в календаре на следующие дни!'));
+
                 console.log("\nОшибка! Выберите дату в календаре на следующие дни!");
+                
                 clearInterval(timer);
             }
         }
         else
         {
+            body.setAttribute("onload", Notiflix.Notify.failure('Ошибка! Выберите дату в календаре!'));
+
             console.log("\nОшибка! Выберите дату в календаре!");
+
             clearInterval(timer);
         }
     }, 1000);
@@ -66,7 +78,11 @@ dataStop.addEventListener('click', () =>
 {
     dataStart.removeAttribute('disabled');
     dataStop.setAttribute('disabled', false);
+    
     clearInterval(timer);
+    
+    body.setAttribute("onload", Notiflix.Notify.warning('Стоп таймер!'));
+
     console.log("\nСтоп таймер!");
 });
 const options =
