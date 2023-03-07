@@ -1,20 +1,35 @@
+// Promises
 
 const body = document.querySelector("body");
-const formElement = document.querySelector(".form");
 const labelElement = document.querySelector("label");
+const formElement = document.querySelector("form.form");
+
+const labelFirstElement = formElement.firstElementChild;
+const labelMiddleElement = formElement.firstElementChild.nextElementSibling;
+const labelLastElement = formElement.lastElementChild.previousElementSibling;
 
 const inputFirstElement = formElement.firstElementChild.firstElementChild;
 const inputMiddleElement = formElement.firstElementChild.nextElementSibling.firstElementChild;
-const inputLastElement = formElement.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild;
+const inputLastElement = formElement.lastElementChild.previousElementSibling.firstElementChild;
+
 const buttonElement = formElement.lastElementChild;
 
 formElement.style.marginTop = '20px';
 formElement.style.marginLeft = '20px';
 
+labelFirstElement.style.marginLeft = '8px';
+labelMiddleElement.style.marginLeft = '8px';
+labelLastElement.style.marginLeft = '8px';
+
+buttonElement.style.marginLeft = '10px';
+buttonElement.style.width = '150px';
+buttonElement.style.height = '30px';
+
 function createPromise (position, delay)
 {
     const shouldResolve = Math.random() > 0.3;
-    const promise_result = new Promise ((resolve, reject) =>
+
+    const promise = new Promise ((resolve, reject) =>
     {
         setTimeout(() =>
         {
@@ -29,45 +44,61 @@ function createPromise (position, delay)
 
         }, delay);
     });
-    return promise_result;
+    return promise;
 }
 buttonElement.addEventListener('click', (e) =>
 {
     e.preventDefault();
 
     let first_delay = Number.parseInt(inputFirstElement.value);
+
     let delay_step = Number.parseInt(inputMiddleElement.value);
-    let amount_ = Number.parseInt(inputLastElement.value);
+
+    let amount = Number.parseInt(inputLastElement.value);
 
     if (inputFirstElement.value !== '' && inputMiddleElement.value !== '' && inputLastElement.value !== '')
     {
-        if (first_delay > 0 && delay_step > 0 && amount_ > 0)
+        if (first_delay > 0 && delay_step > 0 && amount > 0)
         {
+            body.setAttribute("onload", Notiflix.Notify.warning('Start promise!'));
+    
             console.log("\nStart promise!");
-            let i = 0;
-        
-            while (i < amount_)
-            {   
-                createPromise(amount_, delay_step)
-                    .then(({ position, delay }) =>
-                    {
-                        console.log(`\nFulfilled promise ${position} in ${delay} ms;`);
-                    })
-                    .catch(({ position, delay }) =>
-                    {
-                        console.log(`\nRejected promise ${position} in ${delay} ms;`);
-                    });
-                i += 1;
+            
+            for (let i = 1; i <= amount; i += 1)
+            {
+                setTimeout(() =>
+                {
+                    createPromise(i, first_delay += delay_step)
+
+                        .then(({ position, delay }) =>
+                        {
+                            body.setAttribute("onload", Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay} ms;`));
+
+                            console.log(`\nFulfilled promise ${position} in ${delay} ms;`);
+                            console.log("\nDelay first = " + first_delay + " ms; " + "Delay step = " + delay_step + " ms; " + "Amount = " + amount + "; ");
+                        })
+                        .catch(({ position, delay }) =>
+                        {
+                            body.setAttribute("onload", Notiflix.Notify.failure(`Rejected promise ${position} in ${delay} ms;`));
+
+                            console.log(`\nRejected promise ${position} in ${delay} ms;`);
+                            console.log("\nDelay first = " + first_delay + " ms; " + "Delay step = " + delay_step + " ms; " + "Amount = " + amount + "; ");
+                        });
+                },
+                delay_step);
             }
-            console.log("\nDelay first = " + first_delay + " ms; " + "Delay step = " + delay_step + " ms; " + "Amount = " + amount_ + "; ");
         }
         else
         {
+            body.setAttribute("onload", Notiflix.Notify.failure('Ошибка! Введите правильные значения!'));
+
             console.log("\nОшибка! Введите правильные значения!");
         }
     }
     else
     {
+        body.setAttribute("onload", Notiflix.Notify.failure('Ошибка! Введите правильные значения!'));
+
         console.log("\nОшибка! Введите правильные значения!");
     }
     formElement.reset();
