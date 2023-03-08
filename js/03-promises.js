@@ -83,7 +83,7 @@ buttonElement.addEventListener('click', (e) =>
 
                         .then(({ position, delay }) =>
                         {
-                            body.setAttribute("onload", Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay} ms;`));
+                            body.setAttribute("onload", Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay} ms;`));
 
                             console.log(`\nFulfilled promise ${position} in ${delay} ms;`);
                             
@@ -93,7 +93,7 @@ buttonElement.addEventListener('click', (e) =>
                         })
                         .catch(({ position, delay }) =>
                         {
-                            body.setAttribute("onload", Notiflix.Notify.failure(`Rejected promise ${position} in ${delay} ms;`));
+                            body.setAttribute("onload", Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay} ms;`));
 
                             console.log(`\nRejected promise ${position} in ${delay} ms;`);
                             
